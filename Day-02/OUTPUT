@@ -1,0 +1,169 @@
+PS D:\Zoho Corporation\May 05> g++ Day-02.cpp
+PS D:\Zoho Corporation\May 05> ./a
+
+ Enter the number of Organizations: 4
+
+ Enter the Name: HDFC
+
+ Enter the Bank Type: Private
+
+ Enter the Establishment Date: 21 January 2007
+
+ Enter the Branch Name: Vallancherry
+
+ Enter the number of loans supported: 2
+Gold Loan
+Silver Loan
+
+ Enter the number of documents needed: 1
+Aadhar Card
+
+ Enter the Bank Interest Rate: 25
+
+ Enter the Name: SBI
+
+ Enter the Bank Type: Public
+
+ Enter the Establishment Date: 15 May 1986
+
+ Enter the Branch Name: Kanchipuram
+
+ Enter the number of loans supported: 2
+Education Loan
+Health Loan
+
+ Enter the number of documents needed: 2
+PAN Card
+Form 16
+
+ Enter the Bank Interest Rate: 32
+
+ Enter the Name: ICICI
+
+ Enter the Bank Type: Private
+
+ Enter the Establishment Date: 16 December 2000
+
+ Enter the Branch Name: Mahabalipuram
+
+ Enter the number of loans supported: 2
+Self Help Group Loan
+Personal Loan
+
+ Enter the number of documents needed: 3
+Aadhar Card
+PAN Card
+Passport
+
+ Enter the Bank Interest Rate: 34
+
+ Enter the Name: IOB
+
+ Enter the Bank Type: Public
+
+ Enter the Establishment Date: 26 December 1956
+
+ Enter the Branch Name: Tambaram
+
+ Enter the number of loans supported: 2
+Education Loan
+Personal Loan
+
+ Enter the number of documents needed: 1
+Ration Card
+
+ Enter the Bank Interest Rate: 15
+
+ BANK NUMBER - 1
+
+ BANK NAME:     HDFC
+ BANK ESTABLISHMENT DATE:       21 January 2007
+ BANK TYPE:     Private
+ BANK BRANCH:   Vallancherry
+ THE AVAILABLE LOANS ARE:
+
+        Gold Loan
+        Silver Loan
+
+ INTEREST RATE:         25
+ THE REQUIRED DOCUMENTS ARE:
+
+        Aadhar Card
+
+
+
+ BANK NUMBER - 2
+
+ BANK NAME:     SBI
+ BANK ESTABLISHMENT DATE:       15 May 1986
+ BANK TYPE:     Public
+ BANK BRANCH:   Kanchipuram
+ THE AVAILABLE LOANS ARE:
+
+        Education Loan
+        Health Loan
+
+ INTEREST RATE:         32
+ THE REQUIRED DOCUMENTS ARE:
+
+        PAN Card
+        Form 16
+
+
+
+ BANK NUMBER - 3
+
+ BANK NAME:     ICICI
+ BANK ESTABLISHMENT DATE:       16 December 2000
+ BANK TYPE:     Private
+ BANK BRANCH:   Mahabalipuram
+ THE AVAILABLE LOANS ARE:
+
+        Self Help Group Loan
+        Personal Loan
+
+ INTEREST RATE:         34
+ THE REQUIRED DOCUMENTS ARE:
+
+        Aadhar Card
+        PAN Card
+        Passport
+
+
+
+ BANK NUMBER - 4
+
+ BANK NAME:     IOB
+ BANK ESTABLISHMENT DATE:       26 December 1956
+ BANK TYPE:     Public
+ BANK BRANCH:   Tambaram
+ THE AVAILABLE LOANS ARE:
+
+        Education Loan
+        Personal Loan
+
+ INTEREST RATE:         15
+ THE REQUIRED DOCUMENTS ARE:
+
+        Ration Card
+
+
+
+ BANK DETAILS: HDFC
+
+ BANK NAME:     HDFC
+ BANK ESTABLISHMENT DATE:       21 January 2007
+ BANK TYPE:     Private
+ BANK BRANCH:   Vallancherry
+ THE AVAILABLE LOANS ARE:
+
+        Gold Loan
+        Silver Loan
+
+ INTEREST RATE:         25
+ THE REQUIRED DOCUMENTS ARE:
+
+        Aadhar Card
+IOB is the bank that provides the lowest interest.
+HDFC is the bank that provides the lowest interest out of the chosen three.
+SBI provides Cheaper Interest compared to ICICI
