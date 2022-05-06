@@ -1,0 +1,43 @@
+Topic:
+	  Pointers
+	  Smart Pointers
+	  Shared Pointers
+	  Unique Pointers
+  
+  
+Question:
+
+	A city has many buildings, which are arranged in a matrix order of size N * M.  Some buildings are empty some have a family living in it. we can denote these buildings as a N * M matrix with number of person in a family as values, empty building will be denoted with zero. Each family in the building plans to form a group, a group can be only formed with adjacent neighbours vertically or horizontally.
+
+	Given an input matrix of size N * M. Have to find the number of groups that can be formed and the members count in each group. Write a function that will return an array with group members count and number of groups formed. The group with more members will take leadership, so write another function to find the leader group.
+	
+Note:
+	1.	The C++ Standard Template Libraries (STL) cannot be used.
+	2.	Dynamic Memory Allocation for Arrays should be done.
+	3.	There should not be any memory leaks in the program.	
+	
+Sample Input:
+	Rows:		5
+	Columns:	5
+	
+	Matrix:
+				0	2	0	3	1
+				4	1	2	0	0
+				2	0	0	0	0
+				0	1	0	2	3
+				0	0	1	1	0
+				
+Sample Output:
+
+	Groups:		11	4	1	7
+	Leader:		11
+	
+OPTIONAL PARAMETER:
+
+	The leader group needs to take control of all other groups, so it needs to find a path to other groups.  We have to find the minimal path of the shortest distance between leader and other groups.
+	
+	Output:	1	1	2
+	
+	11	--	1	-->	4
+	11	--	1	-->	1
+	11	--	2	-->	7
