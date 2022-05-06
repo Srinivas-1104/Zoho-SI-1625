@@ -1,0 +1,39 @@
+PS D:\Zoho Corporation\May 06> g++ groups.cpp
+PS D:\Zoho Corporation\May 06> ./a
+
+ Enter the number of rows: 5
+
+ Enter the number of columns: 5
+
+ Enter the elements of the city:
+0 2 0 3 1
+4 1 2 0 0
+2 0 0 0 0
+0 1 0 1 1
+0 1 1 0 0
+
+ The Matrix Values are:
+0       2       0       3       1
+4       1       2       0       0
+2       0       0       0       0
+0       1       0       1       1
+0       1       1       0       0
+
+
+
+ The Visit Values are:
+0       1       0       1       1
+1       1       1       0       0
+1       0       0       0       0
+0       1       0       1       1
+0       1       1       0       0
+
+
+
+ The Total Number of Groups available are:      4
+ The Maximum Population contained are:  11      4       3       2
+ The Leader is: 11
+
+
+ Destructor
+ The memory allocated for unique pointers has been freed!
