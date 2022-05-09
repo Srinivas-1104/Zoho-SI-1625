@@ -1,0 +1,59 @@
+PS D:\Zoho Corporation\May 09> g++ raw_pointers.cpp
+PS D:\Zoho Corporation\May 09> ./a
+
+ OBJECT --> DEFAULT CONSTRUCTOR:
+ THE CONTENTS OF THE RECTANGLE CLASS ARE:
+ POINTER         VALUE           ADDRESS
+ LEFT            0               0x6e75c0
+ TOP             0               0x6e7530
+ WIDTH           0               0x6e7440
+ HEIGHT          0               0x6e7460
+
+
+ OBJECT --> PARAMETERIZED CONSTRUCTOR (WIDTH, HEIGHT):
+ THE CONTENTS OF THE RECTANGLE CLASS ARE:
+ POINTER         VALUE           ADDRESS
+ LEFT            0               0x6e75d0
+ TOP             0               0x6e7470
+ WIDTH           5               0x6e7420
+ HEIGHT          10              0x6e7550
+
+
+ OBJECT --> PARAMETERIZED CONSTRUCTOR (ALL VALUES):
+ THE CONTENTS OF THE RECTANGLE CLASS ARE:
+ POINTER         VALUE           ADDRESS
+ LEFT            11              0x6e74b0
+ TOP             12              0x6e7520
+ WIDTH           13              0x6e7480
+ HEIGHT          14              0x6e7500
+ AREA            182             0x6e7560
+
+
+ OBJECT --> PARAMETERIZED CONSTRUCTOR (FLOAT OVERLOAD)::
+ THE CONTENTS OF THE RECTANGLE CLASS ARE:
+ POINTER         VALUE           ADDRESS
+ LEFT            11              0x6e74c0
+ TOP             56              0x6e75b0
+ WIDTH           7785            0x6e7540
+ HEIGHT          223             0x6e7400
+
+
+ OBJECT --> COPY CONSTRUCTOR:
+ THE CONTENTS OF THE RECTANGLE CLASS ARE:
+ POINTER         VALUE           ADDRESS
+ LEFT            11              0x6e74b0
+ TOP             12              0x6e7520
+ WIDTH           13              0x6e7480
+ HEIGHT          14              0x6e7500
+ AREA            182             0x6e7560
+
+
+ THE OBJECT HAS BEEN DELETED.
+
+ THE OBJECT HAS BEEN DELETED.
+
+ THE OBJECT HAS BEEN DELETED.
+
+ THE OBJECT HAS BEEN DELETED.
+
+ THE OBJECT HAS BEEN DELETED.
