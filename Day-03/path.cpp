@@ -195,7 +195,7 @@ class Matrix
             abscissa = start / 10;
             ordinate = start % 10;
 
-            conditions(abscissa, ordinate, 3, false);
+            conditions(abscissa, ordinate, 3, true);
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < column; j++)
@@ -254,7 +254,6 @@ int main ()
     //  The distance for each group.
     m.find_distance();
 
-    //  Print the array object.
     m.print();
 
     //  Return 0 on successful exit.
