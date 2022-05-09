@@ -81,7 +81,7 @@ class Matrix
         }
 
         //  The Helper Function that is used to calculate every available possibilities and sum up the entire population of a group.
-        void conditions (int x, int y, int n)
+        void conditions (int x, int y, int n, bool control)
         {
             //  If the particular (x, y) is visited, then they can be ignored and returned.
             if (visit[x][y] == n)
@@ -89,121 +89,55 @@ class Matrix
 
             //  Else, its value is taken into account and the neighbouring population is found out.
             else
-            {
-                population += city[x][y];
-                if (population != 0)
-                    visit[x][y] = n;
+            {   //  The control variable is used to maintain whether groups are searched or path or searched.
+                if (control)    //  if true --> Groups
+                {                    
+                    population += city[x][y];
+
+                    if (population != 0)
+                        visit[x][y] = n;
+                }
+    
+                else    //  if false -->    Path is found
+                {
+                    for (int i = 0; i < leader_group_size; i++)
+                    {
+                        int abscissa, ordinate;
+                        abscissa = leader_group[i] / 10;
+                        ordinate = leader_group[i] % 10;
+
+                        int temp = abs(x - abscissa) + abs(y - ordinate) - 1;
+
+                        if (temp < min_dist)
+                            min_dist = temp; 
+                    }
+                }
 
                 if (x+1 < row && city[x+1][y] != 0)
                 {
                     visit[x][y] = n;
-                    conditions (x+1, y, n);
+                    conditions (x+1, y, n, control);
                 }
 
                 if (x-1 >= 0 && city[x-1][y] != 0)
                 {
                     visit[x][y] = n;
-                    conditions (x-1, y, n);
+                    conditions (x-1, y, n, control);
                 }
 
                 if (y+1 < column && city[x][y+1] != 0)
                 {
                     visit[x][y] = n;
-                    conditions (x, y+1, n);
+                    conditions (x, y+1, n, control);
                 }
 
                 if (y-1 >= 0 && city[x][y-1] != 0)
                 {
                     visit[x][y] = n;
-                    conditions (x, y-1, n);
+                    conditions (x, y-1, n, control);
                 }
 
                 return;
-            }
-        }
-
-        int minimal_distance (int x, int y, int n, int min_dist)
-        {
-            //  If the particular (x, y) is visited, find the minimal_distance to be ridden.
-            if (visit[x][y] == n)
-                return min_dist;
-
-            //  Else, its value is taken into account and the neighbouring population which has the lease value to be used.
-            else
-            {
-                for (int i = 0; i < leader_group_size; i++)
-                {
-                    int abscissa, ordinate;
-                    abscissa = leader_group[i] / 10;
-                    ordinate = leader_group[i] % 10;
-
-                    int temp = abs(x - abscissa) + abs(y - ordinate) - 1;
-
-                    if (temp < min_dist)
-                        min_dist = temp; 
-                }
-
-                if (x+1 < row && city[x+1][y] != 0)
-                {
-                    visit[x][y] = n;
-                    minimal_distance (x+1, y, n, min_dist);
-                }
-
-                if (x-1 >= 0 && city[x-1][y] != 0)
-                {
-                    visit[x][y] = n;
-                    minimal_distance (x-1, y, n, min_dist);
-                }
-
-                if (y+1 < column && city[x][y+1] != 0)
-                {
-                    visit[x][y] = n;
-                    minimal_distance (x, y+1, n, min_dist);
-                }
-
-                if (y-1 >= 0 && city[x][y-1] != 0)
-                {
-                    visit[x][y] = n;
-                    minimal_distance (x, y-1, n, min_dist);
-                }
-
-                return min_dist;
-            }
-        }
-
-        void find_distance ()
-        {
-            //  The leader group is the indexes corresponding to the group of values to be performed.
-            leader_group = make_unique<int[]> (row * column);
-            int abscissa, ordinate, min;
-
-            abscissa = start / 10;
-            ordinate = start % 10;
-
-            conditions(abscissa, ordinate, 3);
-            for (int i = 0; i < row; i++)
-            {
-                for (int j = 0; j < column; j++)
-                {
-                    if (visit[i][j] == 3)
-                    {
-                        leader_group[leader_group_size] = i * 10 + j;
-                        leader_group_size++;
-                    }
-                }
-            }
-
-            cout << "\n The Path for the rest of the groups are: ";
-            for (int i = 0; i < row; i++)
-            {
-                for (int j = 0; j < column; j++)
-                {
-                    if (visit[i][j] == 1)
-                    {
-                        min = minimal_distance(i, j, 2, 9999);
-                        cout << min << '\t';
-                    }
-                }
             }
         }
 
@@ -218,7 +152,7 @@ class Matrix
                     //  If that particular co-y contains a family,  we need to gather its neighbours.
                     if (city[i][j] != 0)
                     {
-                        conditions(i, j, 1);
+                        conditions(i, j, 1, true);
 
                         //  If the neighbours are not present, ignore them.
                         if (population != 0)
@@ -252,6 +186,43 @@ class Matrix
             cout << "\n The Leader is: " << leader;
         }
 
+                void find_distance ()
+        {
+            //  The leader group is the indexes corresponding to the group of values to be performed.
+            leader_group = make_unique<int[]> (row * column);
+            int abscissa, ordinate;
+
+            abscissa = start / 10;
+            ordinate = start % 10;
+
+            conditions(abscissa, ordinate, 3, false);
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    if (visit[i][j] == 3)
+                    {
+                        leader_group[leader_group_size] = i * 10 + j;
+                        leader_group_size++;
+                    }
+                }
+            }
+
+            cout << "\n The Path for the rest of the groups are: ";
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    if (visit[i][j] == 1)
+                    {
+                        conditions(i, j, 2, false);
+                        cout << min_dist << '\t';
+                        min_dist = 9999;
+                    }
+                }
+            }
+        }
+
         //  The Destructor that deletes the pointers that are used in the heap memory.
         ~Matrix()
         {
@@ -283,6 +254,7 @@ int main ()
     //  The distance for each group.
     m.find_distance();
 
+    //  Print the array object.
     m.print();
 
     //  Return 0 on successful exit.
