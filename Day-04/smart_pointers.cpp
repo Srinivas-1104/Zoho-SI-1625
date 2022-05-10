@@ -6,6 +6,7 @@
 //  The <cmath> header file is used for the utilization of mathematical functions such as round, ceil or floor.
 #include <cmath>
 
+//  The <memory> header file is used to provide accesss to the unique pointers.
 #include <memory>
 
 //  The standard namespace contains several utility functions for us to implement which provides us ease of access.
@@ -24,52 +25,50 @@ class Rectangle
         //  DEFAULT CONSTRUCTOR WITH NO PARAMETERS
         Rectangle ()
         {
-            left.reset(new int(0));
-            top.reset(new int(0));
-            width.reset(new int(0));
-            height.reset(new int(0));
-            //area.reset(new int(0));
+            left = make_unique<int>(0);
+            top = make_unique<int>(0);            
+            width = make_unique<int>(0);            
+            height = make_unique<int>(0);            
         }
 
         //  CONSTRUCTOR WITH TWO PARAMETERS (WIDTH AND HEIGHT)
         Rectangle (int w, int h)
         {   
-            left.reset(new int(0));
-            top.reset(new int(0));
-            width.reset(new int(w));
-            height.reset(new int(h));
-            //area.reset(new int(0));
+            left = make_unique<int>(0);
+            top = make_unique<int>(0);            
+            width = make_unique<int>(w);            
+            height = make_unique<int>(h);  
         }
 
         // //  CONSTRUCTOR WITH ALL PARAMETERS
         Rectangle (int l, int t, int w, int h)
         {
-            left.reset(new int(l));
-            top.reset(new int(t));
-            width.reset(new int(w));
-            height.reset(new int(h));
-            //area.reset(new int(0));
+            left = make_unique<int>(l);
+            top = make_unique<int>(t);            
+            width = make_unique<int>(w);            
+            height = make_unique<int>(h);  
         }
 
         //  CONSTRUCTOR WITH ALL PARAMETERS: TYPE CASTED
         Rectangle (double l, double t, double w, double h)
         {
-            left.reset(new int(round(l)));
-            top.reset(new int(round(t)));
-            width.reset(new int(round(w)));
-            height.reset(new int(round(h)));
-            //area.reset(new int(0));
+            left = make_unique<int>(round(l));
+            top = make_unique<int>(round(t));            
+            width = make_unique<int>(round(w));            
+            height = make_unique<int>(round(h));  
         }
 
         //COPY CONSTRUCTOR
         Rectangle (Rectangle &r)
         {
-            left.reset(new int(*r.left));
-            top.reset(new int(*r.top));
-            width.reset(new int(*r.width));
-            height.reset(new int(*r.height));
-            r.area.reset(new int(*width * *height));
-            area.reset (new int(*r.area));
+
+            left = make_unique<int>(*r.left);
+            top = make_unique<int>(*r.top);            
+            width = make_unique<int>(*r.width);            
+            height = make_unique<int>(*r.height);  
+
+            r.area = make_unique<int>(*width * *height);
+            area = make_unique<int>(*r.area);
         }
 
         //  UTILITY FUNCTION TO PRINT THE VALUES
