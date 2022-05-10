@@ -1,0 +1,28 @@
+PS D:\Zoho Corporation\May 10> g++ nest_namespace.cpp
+PS D:\Zoho Corporation\May 10> ./a
+
+
+
+ Enter the numbers: 55 56
+
+ The Options are:
+
+ 1. ADD
+ 2. SUBTRACT
+ 3. MULTIPLY
+ 4. DIVIDE
+ 5. MODULO
+ Enter the choice: 1
+
+ The Result is: 111
+
+
+ Enter the numbers: 5 9
+
+ 1. AND
+ 2. OR
+ 3. NOT
+ 4. EXOR
+ Enter the choice: 1
+
+ The Result is: 1
