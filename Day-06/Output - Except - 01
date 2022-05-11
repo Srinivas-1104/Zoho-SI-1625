@@ -1,0 +1,47 @@
+PS D:\Zoho Corporation\May 11> g++ except_01.cpp
+PS D:\Zoho Corporation\May 11> ./a
+
+
+
+
+
+ Enter the numbers: 55 0
+
+ Exception Caught:      Invalid Division
+
+
+
+ Creating dynamic pointer arrays
+ The allocated memory size: 2147483647
+ Exception Caught:       The Memory is Compromised.
+
+
+
+ Enter the number: str
+
+ Exception Caught:       Format Mismatch
+
+
+
+ Enter the string: string
+
+ Enter the index: 9
+
+ Exception Caught:       Invalid Index
+
+
+
+ Enter the size of the vector: 5
+
+ Enter the elements: 1 2 3 4 5
+
+ Enter the index: 10
+
+ The value at the index: 5
+
+
+
+ Exception Caught:      My Exception (User-Defined-Exception)
+
+ Exception Handling Accomplished!
+
