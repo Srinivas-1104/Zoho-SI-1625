@@ -1,0 +1,30 @@
+PS D:\Zoho Corporation\May 11> g++ except_02.cpp
+PS D:\Zoho Corporation\May 11> ./a
+
+
+
+ CASE - 01:      EXCEPTION OCCURS WITHIN THE OUTER TRY BLOCK
+
+ Outer Exception-Handler: Outer Exception
+
+
+
+ CASE - 02:      EXCEPTION OCCURS WITHIN THE INNER TRY BLOCK
+
+ Inner Exception-Handler: Inner Exception
+
+
+
+ CASE - 03:      NO NOTABLE EXCEPTION OCCURS
+
+ Exception-Handler:      No such notable exception!
+
+
+
+ CASE - 04:      RE-THROWING AN ALREADY CAUGHT EXCEPTION
+
+ Inner Exception-Handler: Re-Throw
+
+ Outer Exception-Handler: Re-Throw
+
+
