@@ -79,7 +79,7 @@ public:
 
             try
             {
-                //  If 1s5 < x < 21 is violated, invalid age condition is used.
+                //  If 15 < x < 21 is violated, invalid age condition is used.
                 if (!age_verification(age))
                 {
                     except = true;
@@ -96,7 +96,7 @@ public:
 
             try
             {
-                //  The course is verified.
+                //  The course is verified, if it is not in the list, it wont be included.
                 if (!courses_verification(course))
                 {
                     except = true;
@@ -115,6 +115,7 @@ public:
         }
     }
 
+    //  The utility function is used to print the contents of the object.
     void print()
     {
         if (except == false)
@@ -131,6 +132,7 @@ public:
         }
     }
 
+    //  The name is verified using the available isalpha() function.  If non-alphabet characters are used, it returns false.
     bool name_verification(string nm)
     {
         for (int i = 0; i < nm.size(); i++)
@@ -140,7 +142,8 @@ public:
         }
         return true;
     }
-
+    
+    //  This checks the age is within the available range.
     bool age_verification(int a)
     {
         if (15 < a && a < 21)
@@ -148,6 +151,7 @@ public:
         return false;
     }
 
+    //  This checks whether the constrained course is available or not.  If it is available return true or else return false.
     bool courses_verification(string c)
     {
         transform(c.begin(), c.end(), c.begin(), ::toupper);
@@ -160,8 +164,7 @@ public:
     }
 };
 
-//  The implementation of the parameterized constructor.
-
+//  The main function that calls the values.
 int main()
 {
     int roll, age, num;
@@ -192,6 +195,7 @@ int main()
                 throw num;
         } while (num);
     }
+    //  If more than one object is prompted, it returns false and the exception is thrown.
     catch (int num)
     {
             cerr << "\n The user tries to create more than one object. \n The execution is terminated." << endl;
