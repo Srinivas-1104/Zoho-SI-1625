@@ -1,0 +1,43 @@
+On Successful Input:
+
+	PS D:\Zoho Corporation\May 11> g++ except_03.cpp
+	PS D:\Zoho Corporation\May 11> ./a
+
+	 Enter the roll number: 1
+
+	 Enter the name: Srinivasan
+
+	 Enter the age: 20
+
+	 Enter the course: CSE
+
+	 The Student Details are:
+	 Roll Number: 1
+	 Name:
+	 Age: 20
+	 Course: CSE
+	 Do you want to continue? (1/0)         0
+	 
+On an Input with Exception:
+
+	PS D:\Zoho Corporation\May 11> g++ except_03.cpp
+	PS D:\Zoho Corporation\May 11> ./a
+
+	 Enter the roll number: 15
+
+	 Enter the name: Delta !!
+
+	 Enter the age: 36
+
+	 Enter the course: forest
+
+	 Exception Caught:      The age is not within the range!
+
+	 Exception Caught:      The course is not available!
+
+	 The details need to be re-entered as they face exceptions.
+
+	 Do you want to continue? (1/0)         1
+
+	 The user tries to create more than one object.
+	 The execution is terminated.
