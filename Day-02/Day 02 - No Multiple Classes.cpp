@@ -11,7 +11,10 @@ using namespace std;
 class Bank
 {
     public:
-        string establish_date, bank_type, name, branch;
+
+        enum bank_types {PUBLIC = 1, PRIVATE = 2};
+        string establish_date, name, branch;
+        enum bank_types bt;
 
         //  The Abstract Methods that are to be over-riden.
         string get_establish_date() { return " "; }
@@ -56,21 +59,24 @@ class Organizations : public Bank, Loan
             cin >> name;
             cin.ignore(1, '\n');
 
-            cout << "\n Enter the Bank Type: "; 
-            getline(cin, bank_type);
+            cout << "\n Enter the Bank Type: ( 1 - PUBLIC || 2 - PRIVATE)"; 
+            cin >> n;
+
+            if (n == 1)                     bt = PUBLIC;
+            else if (n == 2)                bt = PRIVATE;
 
             cout << "\n Enter the Establishment Date: "; 
-            getline(cin, establish_date);
+            getline(cin >> ws, establish_date);
 
             cout << "\n Enter the Branch Name: ";
-            getline (cin, branch);
+            getline (cin >> ws, branch);
 
             cout << "\n Enter the number of loans supported: "; 
             cin >> n;
             cin.ignore(1, '\n');
             for (int i=0; i<n; i++)
             {
-                getline(cin, str); 
+                getline(cin >> ws, str); 
                 loans.push_back(str);
             }
 
@@ -79,7 +85,7 @@ class Organizations : public Bank, Loan
             cin.ignore(1, '\n');
             for (int i=0; i<n; i++)
             {
-                getline(cin, str);
+                getline(cin >> ws, str);
                 documents.push_back(str);
             }
             
@@ -101,7 +107,10 @@ class Organizations : public Bank, Loan
         //  Returns the type of the bank (OVER-RIDING)
         string get_bank_type()
         {
-            return bank_type;
+            if (bt == 1)
+                return "PUBLIC";
+            else if (bt == 2)
+                return "PRIVATE";
         }
 
         //  Returns the date of establishment of the bank (OVER-RIDING)
@@ -260,7 +269,7 @@ int main()
         bool temp = (orns[1] < orns[2]);
         (temp) ? cout << orns[1].get_name() : cout << orns[2].get_name();
         cout << " provides Cheaper Interest compared to ";
-        (not temp) ? cout << orns[1].get_name() : cout << orns[2].get_name();
+        (!temp) ? cout << orns[1].get_name() : cout << orns[2].get_name();
     }    
 
     //  Returns 0 on successful execution of the program.
