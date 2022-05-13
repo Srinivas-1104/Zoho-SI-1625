@@ -6,12 +6,34 @@
 #include <string>
 
 using namespace std;
-using std::string;
+
+auto compare = [] (int value, string relop, int limit)
+{
+        if (relop == ">=")
+            return value >= limit;
+
+        else if (relop == "<=")
+            return value <= limit;
+
+        else if (relop == ">")
+            return value > limit;
+
+        else if (relop == "<")
+            return value < limit;
+
+        else if (relop == "==")
+            return value == limit;
+
+        else if (relop == "!=")
+            return value != limit;
+
+        return false;
+};
 
 class Sensors
 {
 public:
-    string device, op, function;
+    string device, relop, function;
     int battery_level = 100;
 
     void on_battery_check ()
@@ -24,29 +46,6 @@ public:
             cout << "\n Low Battery: \t System Exit";
             exit(0);
         }
-    }
-
-    bool compare(int value, string op, int limit)
-    {
-        if (op == ">=")
-            return value >= limit;
-
-        else if (op == "<=")
-            return value <= limit;
-
-        else if (op == ">")
-            return value > limit;
-
-        else if (op == "<")
-            return value < limit;
-
-        else if (op == "==")
-            return value == limit;
-
-        else if (op == "!=")
-            return value != limit;
-
-        return false;
     }
 };
 
@@ -242,10 +241,9 @@ public:
     {
         sregex_token_iterator it{str.begin(), str.end(), re, -1};
         vector<std::string> tokenized{it, {}};
-        tokenized.erase(std::remove_if(tokenized.begin(), tokenized.end(),
-                                       [](std::string const &s)
-                                       { return s.size() == 0; }),
-                        tokenized.end());
+        tokenized.erase(remove_if(tokenized.begin(), tokenized.end(),
+                                       [](string const &s) { return s.size() == 0; }),
+                                            tokenized.end());
         return tokenized;
     }
 
@@ -255,7 +253,7 @@ public:
         if (token_one[1] == "temperature")
         {
             t.temperature_limit  = stof(token_one[3]);
-            t.op = token_one[2];
+            t.relop = token_one[2];
             t.device = token_two[1];
             t.function = token_two[2];
         }
@@ -263,7 +261,7 @@ public:
         if (token_one[1] == "brightness")
         {
             l.brightness_limit  = stof(token_one[3]);
-            l.op = token_one[2];
+            l.relop = token_one[2];
             l.device = token_two[1];
             l.function = token_two[2];
         }
@@ -271,7 +269,7 @@ public:
         if (token_one[1] == "waterlevel")
         {
             h.water_level_limit  = stof(token_one[3]);
-            h.op = token_one[2];
+            h.relop = token_one[2];
             h.device = token_two[1];
             h.function = token_two[2];
         }
@@ -279,7 +277,7 @@ public:
         if (token_one[1] == "gaslevel")
         {
             g.gas_level_limit  = stof(token_one[3]);
-            g.op = token_one[2];
+            g.relop = token_one[2];
             g.device = token_two[1];
             g.function = token_two[2];
         }
@@ -287,7 +285,7 @@ public:
         if (token_one[1] == "distance")
         {
             d.distance_limit  = stof(token_one[3]);
-            d.op = token_one[2];
+            d.relop = token_one[2];
             d.device = token_two[1];
             d.function = token_two[2];
         }
@@ -305,7 +303,7 @@ public:
         if (key == "ti" || key == "td")
         {
             t.on_temperature_change(key);
-            status = t.compare(t.temperature_value, t.op, t.temperature_limit);
+            status = compare(t.temperature_value, t.relop, t.temperature_limit);
             device = t.device;
             function = t.function;            
         }
@@ -313,7 +311,7 @@ public:
         else if (key == "bi" || key == "bd")
         {
             l.on_brightness_change(key);
-            status = l.compare(l.brightness_value, l.op, l.brightness_limit);
+            status = compare(l.brightness_value, l.relop, l.brightness_limit);
             device = l.device;
             function = l.function;            
         }
@@ -321,7 +319,7 @@ public:
         else if (key == "wi" || key == "wd")
         {
             h.on_water_level_change(key);
-            status = h.compare(h.water_level_value, h.op, h.water_level_limit);
+            status = compare(h.water_level_value, h.relop, h.water_level_limit);
             device = h.device;
             function = h.function;            
         }
@@ -329,7 +327,7 @@ public:
         else if (key == "gi" || key == "gd")
         {
             g.on_gas_level_change(key);
-            status = g.compare(g.gas_level_value, g.op, g.gas_level_limit);
+            status = compare(g.gas_level_value, g.relop, g.gas_level_limit);
             device = g.device;
             function = g.function;            
         }
@@ -337,7 +335,7 @@ public:
         else if (key == "di" || key == "dd")
         {
             d.on_distance_change(key);
-            status = d.compare(d.distance_value, d.op, d.distance_limit);
+            status = compare(d.distance_value, d.relop, d.distance_limit);
             device = d.device;
             function = d.function;            
         }
