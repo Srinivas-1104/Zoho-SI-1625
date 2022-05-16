@@ -1,33 +1,32 @@
 #include <iostream>
 #include <sstream>
-#include <cstdlib>
 #include <vector>
 #include <regex>
 #include <string>
 
 using namespace std;
 
-auto compare = [] (int value, string relop, int limit)
+auto compare = [](int value, string relop, int limit)
 {
-        if (relop == ">=")
-            return value >= limit;
+    if (relop == ">=")
+        return value >= limit;
 
-        else if (relop == "<=")
-            return value <= limit;
+    else if (relop == "<=")
+        return value <= limit;
 
-        else if (relop == ">")
-            return value > limit;
+    else if (relop == ">")
+        return value > limit;
 
-        else if (relop == "<")
-            return value < limit;
+    else if (relop == "<")
+        return value < limit;
 
-        else if (relop == "==")
-            return value == limit;
+    else if (relop == "==")
+        return value == limit;
 
-        else if (relop == "!=")
-            return value != limit;
+    else if (relop == "!=")
+        return value != limit;
 
-        return false;
+    return false;
 };
 
 class Sensors
@@ -35,8 +34,9 @@ class Sensors
 public:
     string device, relop, function;
     int battery_level = 100;
+    bool status = true;
 
-    void on_battery_check ()
+    void on_battery_check()
     {
         cout << "\n The current battery_level: " << battery_level;
         battery_level -= 2;
@@ -58,7 +58,6 @@ public:
 
     void on_connect() {}
     void on_disconnect() {}
-
 };
 
 class Temperature_Sensor : public Sensors
@@ -151,8 +150,6 @@ public:
     }
 };
 
-
-
 class Smart_Fan : public Devices
 {
 public:
@@ -169,7 +166,7 @@ public:
     }
 };
 
-class Smart_Light: public Devices
+class Smart_Light : public Devices
 {
 public:
     bool status;
@@ -185,7 +182,7 @@ public:
     }
 };
 
-class Smart_Door: public Devices
+class Smart_Door : public Devices
 {
 public:
     bool status;
@@ -200,8 +197,6 @@ public:
         cout << "\n The door is closed.";
     }
 };
-
-
 
 class Device_Manager : public Devices
 {
@@ -224,9 +219,12 @@ public:
     void get_input()
     {
         s.on_battery_check();
-        cout << endl << endl;
+        cout << endl
+             << endl;
 
         regex re(R"([\s|:,]+)");
+
+        cout << "\n The commands should be entered in the lower case::" << endl;
 
         cout << "\n Enter the command one: ";
         getline(cin >> ws, command_one);
@@ -242,17 +240,17 @@ public:
         sregex_token_iterator it{str.begin(), str.end(), re, -1};
         vector<std::string> tokenized{it, {}};
         tokenized.erase(remove_if(tokenized.begin(), tokenized.end(),
-                                       [](string const &s) { return s.size() == 0; }),
-                                            tokenized.end());
+                                  [](string const &s)
+                                  { return s.size() == 0; }),
+                        tokenized.end());
         return tokenized;
     }
-
 
     void remote_sensing()
     {
         if (token_one[1] == "temperature")
         {
-            t.temperature_limit  = stof(token_one[3]);
+            t.temperature_limit = stof(token_one[3]);
             t.relop = token_one[2];
             t.device = token_two[1];
             t.function = token_two[2];
@@ -260,7 +258,7 @@ public:
 
         if (token_one[1] == "brightness")
         {
-            l.brightness_limit  = stof(token_one[3]);
+            l.brightness_limit = stof(token_one[3]);
             l.relop = token_one[2];
             l.device = token_two[1];
             l.function = token_two[2];
@@ -268,7 +266,7 @@ public:
 
         if (token_one[1] == "waterlevel")
         {
-            h.water_level_limit  = stof(token_one[3]);
+            h.water_level_limit = stof(token_one[3]);
             h.relop = token_one[2];
             h.device = token_two[1];
             h.function = token_two[2];
@@ -276,7 +274,7 @@ public:
 
         if (token_one[1] == "gaslevel")
         {
-            g.gas_level_limit  = stof(token_one[3]);
+            g.gas_level_limit = stof(token_one[3]);
             g.relop = token_one[2];
             g.device = token_two[1];
             g.function = token_two[2];
@@ -284,12 +282,11 @@ public:
 
         if (token_one[1] == "distance")
         {
-            d.distance_limit  = stof(token_one[3]);
+            d.distance_limit = stof(token_one[3]);
             d.relop = token_one[2];
             d.device = token_two[1];
             d.function = token_two[2];
         }
-
     }
 
     void key_press(string key)
@@ -298,14 +295,15 @@ public:
         bool status;
 
         s.on_battery_check();
-        cout << endl << endl;
+        cout << endl
+             << endl;
 
         if (key == "ti" || key == "td")
         {
             t.on_temperature_change(key);
             status = compare(t.temperature_value, t.relop, t.temperature_limit);
             device = t.device;
-            function = t.function;            
+            function = t.function;
         }
 
         else if (key == "bi" || key == "bd")
@@ -313,7 +311,7 @@ public:
             l.on_brightness_change(key);
             status = compare(l.brightness_value, l.relop, l.brightness_limit);
             device = l.device;
-            function = l.function;            
+            function = l.function;
         }
 
         else if (key == "wi" || key == "wd")
@@ -321,7 +319,7 @@ public:
             h.on_water_level_change(key);
             status = compare(h.water_level_value, h.relop, h.water_level_limit);
             device = h.device;
-            function = h.function;            
+            function = h.function;
         }
 
         else if (key == "gi" || key == "gd")
@@ -329,7 +327,7 @@ public:
             g.on_gas_level_change(key);
             status = compare(g.gas_level_value, g.relop, g.gas_level_limit);
             device = g.device;
-            function = g.function;            
+            function = g.function;
         }
 
         else if (key == "di" || key == "dd")
@@ -337,28 +335,28 @@ public:
             d.on_distance_change(key);
             status = compare(d.distance_value, d.relop, d.distance_limit);
             device = d.device;
-            function = d.function;            
+            function = d.function;
         }
 
         else
             cout << "\n Invalid Key-Press Event";
-        
-        carry_over (device, function, status);        
+
+        carry_over(device, function, status);
     }
 
-    void carry_over (string device, string function, bool status)
+    void carry_over(string device, string function, bool status)
     {
         if (device == "fan")
         {
             if (function == "turnon" && status == true)
                 fan.on_connect();
-            
+
             else if (function == "turnoff" && status == true)
                 fan.on_disconnect();
 
             else if (function == "turnoff")
                 fan.on_connect();
-            
+
             else
                 fan.on_disconnect();
         }
@@ -367,13 +365,13 @@ public:
         {
             if (function == "turnon" && status == true)
                 light.on_connect();
-            
+
             else if (function == "turnoff" && status == true)
                 light.on_disconnect();
 
             else if (function == "turnoff")
                 light.on_connect();
-            
+
             else
                 light.on_disconnect();
         }
@@ -382,13 +380,13 @@ public:
         {
             if (function == "open" && status == true)
                 door.on_connect();
-            
+
             else if (function == "close" && status == true)
                 door.on_disconnect();
 
             else if (function == "close")
                 door.on_connect();
-            
+
             else
                 door.on_disconnect();
         }
@@ -401,7 +399,7 @@ int main()
     Device_Manager dm;
 
     do
-    {    
+    {
         dm.get_input();
         dm.remote_sensing();
 
@@ -420,5 +418,5 @@ int main()
         cin >> num;
     } while (num);
 
-    return 0;  
+    return 0;
 }
