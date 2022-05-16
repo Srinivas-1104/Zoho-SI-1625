@@ -1,0 +1,75 @@
+The current battery_level: 100
+
+
+ The commands should be entered in the lower case::
+
+ Enter the command one: if: temperature > 2
+
+ Enter the command two: then: fan turnon
+
+ Do you wish to continue (1/0)?         1
+
+ The current battery_level: 98
+
+
+ The commands should be entered in the lower case::
+
+ Enter the command one: if: brightness > 5
+
+ Enter the command two: then: light turnoff
+
+ Do you wish to continue (1/0)?         0
+
+ Enter the key: ti
+
+ The current battery_level: 96
+
+
+ The temperature value is: 1
+ The fan is off.
+ Do you wish to continue (1/0)?         1
+
+ Enter the key: ti
+
+ The current battery_level: 94
+
+
+ The temperature value is: 2
+ The fan is off.
+ Do you wish to continue (1/0)?         1
+
+ Enter the key: ti
+
+ The current battery_level: 92
+
+
+ The temperature value is: 3
+ The fan is on.
+ Do you wish to continue (1/0)?         1
+
+ Enter the key: ti
+
+ The current battery_level: 90
+
+
+ The temperature value is: 4
+ The fan is on.
+ Do you wish to continue (1/0)?         1
+
+ Enter the key: td
+
+ The current battery_level: 88
+
+
+ The temperature value is: 3
+ The fan is on.
+ Do you wish to continue (1/0)?         1
+
+ Enter the key: td
+
+ The current battery_level: 86
+
+
+ The temperature value is: 2
+ The fan is off.
+ Do you wish to continue (1/0)?         0
