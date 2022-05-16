@@ -1,0 +1,112 @@
+PS D:\Zoho Corporation\May 13> g++ eg.cpp
+PS D:\Zoho Corporation\May 13> ./a
+
+
+
+ TELECOMMUNICATIONS SYSTEM:      
+ 0.      EXIT 
+ 1.      ADD MOBILE CONNECTION   
+ 2.      ADD LANDLINE CONNECTION 
+ 3.      VIEW MOBILE 
+ 4.      VIEW LANDLINE 
+ 5.      BILL UPDATION 
+ 6.      BILL PAYMENT
+
+ Enter the choice: 1
+
+ Enter the number: 9444937137
+
+ The connection has been added.  
+
+
+ TELECOMMUNICATIONS SYSTEM:      
+ 0.      EXIT 
+ 1.      ADD MOBILE CONNECTION   
+ 2.      ADD LANDLINE CONNECTION 
+ 3.      VIEW MOBILE
+ 4.      VIEW LANDLINE
+ 5.      BILL UPDATION
+ 6.      BILL PAYMENT
+
+ Enter the choice: 2
+
+ Enter the number: 04427235000
+
+ The connection has been added.
+
+
+ TELECOMMUNICATIONS SYSTEM:
+ 0.      EXIT
+ 1.      ADD MOBILE CONNECTION
+ 2.      ADD LANDLINE CONNECTION
+ 3.      VIEW MOBILE
+ 4.      VIEW LANDLINE
+ 5.      BILL UPDATION
+ 6.      BILL PAYMENT
+
+ Enter the choice: 3
+        9444937137      0
+
+
+ TELECOMMUNICATIONS SYSTEM:
+ 0.      EXIT
+ 1.      ADD MOBILE CONNECTION
+ 2.      ADD LANDLINE CONNECTION
+ 3.      VIEW MOBILE
+ 4.      VIEW LANDLINE
+ 5.      BILL UPDATION
+ 6.      BILL PAYMENT
+
+ Enter the choice: 4
+        04427235000     0
+
+
+ TELECOMMUNICATIONS SYSTEM:
+ 0.      EXIT
+ 1.      ADD MOBILE CONNECTION
+ 2.      ADD LANDLINE CONNECTION
+ 3.      VIEW MOBILE
+ 4.      VIEW LANDLINE
+ 5.      BILL UPDATION
+ 6.      BILL PAYMENT
+
+ Enter the choice: 5
+
+ Enter the number: 9444937137
+
+ Number matched.
+ Enter the amount: 50.00
+
+
+
+ TELECOMMUNICATIONS SYSTEM:
+ 0.      EXIT
+ 1.      ADD MOBILE CONNECTION
+ 2.      ADD LANDLINE CONNECTION
+ 3.      VIEW MOBILE
+ 4.      VIEW LANDLINE
+ 5.      BILL UPDATION
+ 6.      BILL PAYMENT
+
+ Enter the choice: 6
+
+ Enter the number: 9444937137
+
+ Number matched.
+ Enter the amount: 100.00
+
+ The excess amount is paid off: 50
+
+
+ TELECOMMUNICATIONS SYSTEM:
+ 0.      EXIT
+ 1.      ADD MOBILE CONNECTION
+ 2.      ADD LANDLINE CONNECTION
+ 3.      VIEW MOBILE
+ 4.      VIEW LANDLINE
+ 5.      BILL UPDATION
+ 6.      BILL PAYMENT
+
+ Enter the choice: 0
+
+ The system is exiting.
