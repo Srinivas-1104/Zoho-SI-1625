@@ -58,13 +58,13 @@ class Rectangle
         //  COPY CONSTRUCTOR
         Rectangle (Rectangle &r)
         {
-            left = r.left;
-            top = r.top;
-            width = r.width;
-            height = r.height;
+            left = new int (r.left);
+            top = new int (r.top);
+            width = new int (r.width);
+            height = new int (r.height);
 
             r.area = new int (*(width) * *(height));
-            area = r.area;
+            area = new int (r.area);
         }
 
         //  UTILITY FUNCTION TO PRINT THE VALUES
