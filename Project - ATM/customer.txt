@@ -1,0 +1,8 @@
+Customer Details
+Account Number 		 Account Holder 		 Pin Number 		 Account Balance
+101						Suresh				2343					25234
+102						Ganesh				5432					34123
+103						Magesh				7854					22500
+104						Naresh				2345					80000
+105						Harish				1907					103400
+															103400
