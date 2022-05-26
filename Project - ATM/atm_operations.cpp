@@ -20,8 +20,7 @@ public:
 
         if (customers.check_customer(acc, pin) == -1)
         {
-            cout << "\n Invalid Pin Number!";
-            cout << "\n Transaction failed!";
+            cout << "\n Invalid Pin Number! \n Transaction failed!";
             return;
         }
 
@@ -33,26 +32,22 @@ public:
 
         if (withdrawal > 10000 || withdrawal < 100)
         {
-            cout << "\n The specified amount exceeds the limit.";
-            return;
+            cout << "\n The specified amount exceeds the limit.";            return;
         }
 
         else if (withdrawal > customers.c[id].amount)
         {
-            cout << "\n The specified amount exceeds the account balance.";
-            return;
+            cout << "\n The specified amount exceeds the account balance.";            return;
         }
 
         else if (withdrawal > cash.total)
         {
-            cout << "\n The specified amount exceeds the balance in ATM.";
-            return;
+            cout << "\n The specified amount exceeds the balance in ATM.";            return;
         }
 
         else if ((withdrawal % 100 != 0 && cash.hundered != 0))
         {
-            cout << "\n The specified denominations could not be given.";
-            return;
+            cout << "\n The specified denominations could not be given.";            return;
         }
 
         else if (withdrawal > 5000)
@@ -63,13 +58,11 @@ public:
 
             if (a > 2)
             {
-
                 for (int i = 1; i <= a; i++)
                 {
                     if (money > 2000)
                     {
-                        money -= 2000;
-                        count += 2000;
+                        money -= 2000;  count += 2000;
                     }
                     else
                         break;
@@ -96,8 +89,7 @@ public:
                 {
                     if (money >= 500)
                     {
-                        money -= 500;
-                        count += 500;
+                        money -= 500;   count += 500;
                     }
                     else
                         break;
@@ -129,8 +121,7 @@ public:
                 {
                     if (money >= 100)
                     {
-                        money -= 100;
-                        count += 100;
+                        money -= 100;   count += 100;
                     }
                     else
                         break;
@@ -172,8 +163,7 @@ public:
             {
                 if (money >= 3000)
                 {
-                    money -= 2000;
-                    a -= 1;
+                    money -= 2000;  a -= 1;
                 }
 
                 if (a < 0)
@@ -197,8 +187,7 @@ public:
 
                     if (money > 500 && (money >= 1500))
                     {
-                        money -= 500;
-                        count += 500;
+                        money -= 500;   count += 500;
                     }
 
                     else
@@ -231,8 +220,7 @@ public:
                 {
                     if (money >= 100)
                     {
-                        money -= 100;
-                        count += 100;
+                        money -= 100;   count += 100;
                     }
                     else
                         break;
@@ -277,17 +265,10 @@ public:
         int choice;
         do
         {
-            cout << endl << endl;
-            cout << "\n ATM PROCESS SIMULATION: " << endl;
-            cout << "\n 0. Exit";
-            cout << "\n 1. Check Balance";
-            cout << "\n 2. Withdraw Money";
-            cout << "\n 3. Transfer Money";
-            cout << "\n 4. Check ATM Balance";
-            cout << endl << endl;
+            cout << "\n\n\n ATM PROCESS SIMULATION: " << endl;
+            cout << "\n 0. Exit \n 1. Check Balance \n 2. Withdraw Money \n 3. Transfer Money \n 4. Check ATM Balance "<< endl << endl; 
             cout << "\n Enter the choice: ";
             cin >> choice;
-
             cout << endl << endl;
 
             switch (choice)
@@ -305,7 +286,7 @@ public:
                     break;
 
                 case 3:
-                    bool val = customers.transfer_money(id);
+                    customers.transfer_money(id);
                     break;
 
                 case 4:
@@ -317,7 +298,6 @@ public:
                     cout << "\n Invalid Choice";
                     break;
             }
-
         } while (choice);
     }
 };
@@ -330,13 +310,8 @@ int main()
 
     do
     {
-        cout << "\n ATM OPERATIONS: " << endl;
-        cout << "\n 0. Exit";
-        cout << "\n 1. Load Cash into the ATM";
-        cout << "\n 2. Show Customer Details";
-        cout << "\n 3. ATM Process";
-
-        cout << "\n\n Enter the choice: ";
+        cout << "\n ATM OPERATIONS: \n";
+        cout << "\n 0. Exit \n 1. Load Cash into the ATM \n 2. Show Customer Details \n 3. ATM Process \n\n Enter the choice: ";
         cin >> choice;
 
         cout << endl << endl;
@@ -344,32 +319,23 @@ int main()
         switch (choice)
         {
             case 0:
-                {
-                    cout << "Exiting...";
-                    cout << endl << endl;
-                }
+                cout << "Exiting..." << endl << endl;
                 break;
 
             case 1:
-                {
-                    cash.add_cash();
-                    cout << endl << endl;
-                }
+                cash.add_cash();
+                cout << endl << endl;
                 break;
 
             case 2:
-                {
-                    customers.print_data_screen();
-                    cout << endl << endl;
-                }
+                customers.print_data_screen();
+                cout << endl << endl;
                 break;
 
             case 3:
                 {
-                    cout << "\n Enter the Account Number: ";
-                    cin >> acc_no;
-                    cout << "\n Enter the Pin Number: ";
-                    cin >> pin_no;
+                    cout << "\n Enter the Account Number: ";           cin >> acc_no;
+                    cout << "\n Enter the Pin Number: ";               cin >> pin_no;
 
                     int check = customers.check_customer(acc_no, pin_no);
                     if (check != -1)
@@ -382,10 +348,7 @@ int main()
                 break;
 
             default:
-                {
-                    cout << "\n Invalid Choice";
-                    cout << endl << endl;
-                }
+                cout << "\n Invalid Choice!"<< endl << endl;
                 break;
         }
         cout << endl << endl;
