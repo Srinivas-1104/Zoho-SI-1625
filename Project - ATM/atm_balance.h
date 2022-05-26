@@ -76,7 +76,6 @@ public:
 
         if (is_empty(file))
             reset();
-        
 
         else
         {
