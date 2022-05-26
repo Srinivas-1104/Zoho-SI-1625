@@ -121,6 +121,11 @@ public:
 
             if (c >= 0)
             {
+                if (money > 1000)
+                {
+                    cout << "\n The denomination is availing maximum condition: \t 100";
+                    return; 
+                }
                 for (int i = 1; i <= c; i++)
                 {
                     if (money >= 100)
@@ -130,6 +135,8 @@ public:
                     }
                     else
                         break;
+
+                    
                 }
 
                 c = c - (count / 100);
