@@ -142,7 +142,7 @@ public:
 
                 c = c - (count / 100);
                 count = 0;
-                if (c < 0)
+                if (c < 0 && money != 0)
                 {
                     cout << "\n The denomination is unavailable. \t" << 100;
                     return;
@@ -196,15 +196,15 @@ public:
             {
                 for (int i = 1; i <= b; i++)
                 {
-                    if (money >= 1000 && b < 1)
-                    {
-                        break;
-                    }
-                    if (money > 500 && (money > 1500 || money > 1000))
+                    if (money == 1000)
+                       break;
+                    
+                    if (money > 500 && (money >= 1500))
                     {
                         money -= 500;
                         count += 500;
                     }
+
                     else
                         break;
                 }
@@ -241,10 +241,10 @@ public:
                     else
                         break;
                 }
-
+                
                 c = c - (count / 100);
                 count = 0;
-                if (c < 0)
+                if (c < 0 || money > 0)
                 {
                     cout << "\n The denomination is unavailable. \t" << 100;
                     return;
