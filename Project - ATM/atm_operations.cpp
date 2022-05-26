@@ -199,6 +199,7 @@ public:
                     if (money >= 1000 && b < 1)
                     {
                         b = 0;
+                        break;
                     }
                     if (money > 500 && (money > 1500 || money > 1000))
                     {
@@ -226,6 +227,11 @@ public:
 
             if (c > 0)
             {
+                if (money > 1500)
+                {
+                    cout << "\n The denomination exceeds the maximum limit. \t 100";
+                    return;
+                }
                 for (int i = 1; i <= c; i++)
                 {
                     if (money >= 100)
