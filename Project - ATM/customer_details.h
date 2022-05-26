@@ -10,19 +10,18 @@ using namespace std;
 class Customer
 {
     public:
-        string account_number;
-        string account_holder;
-        string pin_number;
+        string account_number, account_holder, pin_number;
         float amount;
 
-        Customer () {}
-        Customer (string ano, string aho, string pin, float amo)
+        Customer ()     {}
+
+        Customer (string ano, string aho, string pin, float amo) 
         {
             account_number = ano;
             account_holder = aho;
             pin_number = pin;
-            amount = amo;
-        }
+            amount = amo;    
+        } 
 };
 
 class Customer_Details
@@ -31,9 +30,9 @@ class Customer_Details
         vector<Customer> c;
         int trans_no = 1001;
 
-        bool is_empty(std::ifstream& pFile)
+        bool is_empty(ifstream& pFile)
         {
-            return pFile.peek() == std::ifstream::traits_type::eof();
+            return pFile.peek() == ifstream::traits_type::eof();
         }
 
         void read_data ()
@@ -59,15 +58,10 @@ class Customer_Details
                     if (file.eof())
                         break;
                     
-                    string ano, aho, pin;   float no;
+                    string ano, aho, pin;
 
-                    file >> ano;
-                    file >> aho;
-                    file >> pin;
-                    file >> ch;
-                    no = stof(ch);
-
-                    Customer cust (ano, aho, pin, no);
+                    file >> ano >> aho >> pin >> ch;
+                    Customer cust (ano, aho, pin, stof(ch));
                     c.push_back(cust);
                 }          
             }
@@ -83,31 +77,24 @@ class Customer_Details
             file << "Account Number \t\t Account Holder \t\t Pin Number \t\t Account Balance" << endl;
 
             for (int i = 0; i < c.size(); i++)
-            {
                 file << c[i].account_number << "\t\t\t\t\t\t" << c[i].account_holder << "\t\t\t\t" << c[i].pin_number << "\t\t\t\t\t" << c[i].amount << endl;
-            }
-
         }
 
         void print_data_screen ()
         {
             read_data();
-
             cout << "Customer Details" << endl;
             cout << "Account Number \t\t Account Holder \t\t Pin Number \t\t Account Balance" << endl;
             for (int i = 0; i < 5; i++)
-            {
                 cout << c[i].account_number << "\t\t" << c[i].account_holder << "\t\t" << c[i].pin_number << "\t\t" << c[i].amount << endl;
-            }
-
         }
 
         void write_data_transfer(int id_01, int id_02, int amt)
         {
             string value;
-            value = c[id_01].account_number + ".txt";
             fstream file_01, file_02;
 
+            value = c[id_01].account_number + ".txt";
             file_01.open(value, ios::app);
             file_01 << trans_no << "\t\t" << "Transfer to " << c[id_02].account_number << "\t\t" << "Debit" << "\t\t" << amt << "\t\t" << c[id_01].amount << endl;
 
@@ -123,47 +110,16 @@ class Customer_Details
             string value = c[id_01].account_number + ".txt";
             fstream file;
             file.open(value, ios::app);
-
-            file << trans_no << "\t\t" << "Withdrawal" << "\t\t" << "Debit" << "\t\t" << amt << "\t\t" << c[id_01].amount << endl;
+            file << trans_no << "\t\t\t" << "Withdrawal" << "\t\t" << "Debit" << "\t\t" << amt << "\t\t" << c[id_01].amount << endl;
             trans_no += 1;
         }
-
-
-        // void add_customer ()
-        // {
-        //     read_data();
-
-        //     int n;
-        //     cout << "\n Enter the number of customers: ";
-        //     cin >> n;
-        //     for (int i = 0; i < n; i++)
-        //     {
-        //         string ano, aho, pin;   float amo;
-        //         cout << "\n Enter the account number: ";
-        //         cin >> ano;
-        //         cout << "\n Enter the account holder: ";
-        //         cin >> aho;
-        //         cout << "\n Enter the pin number: ";
-        //         cin >> pin;
-        //         cout << "\n Enter the amount: ";
-        //         cin >> amo;
-
-        //         Customer cust (ano, aho, pin, amo);
-        //         c.push_back(cust);
-        //     }
-
-        //     print_data();
-        // }
 
         int check_customer (string acc_no, string pin_no)
         {
             read_data();
             for (int i = 0; i < c.size(); i++)
-            {
                 if (c[i].account_number == acc_no && c[i].pin_number == pin_no)
                     return i;
-            }
-
             return -1;
         }
 
@@ -187,10 +143,8 @@ class Customer_Details
             if (acc != c[id_01].account_number)
             {
                 for (int i = 0; i < c.size(); i++)
-                {
                     if (acc == c[i].account_number)
                         id_02 = i;
-                }
             }
 
             if (id_02 == -1)
@@ -200,7 +154,7 @@ class Customer_Details
                 return false;
             }
 
-            if (id_02 != -1)
+            else
             {
                 cout << "\n Enter the amount to be transferred: ";
                 cin >> amt;
