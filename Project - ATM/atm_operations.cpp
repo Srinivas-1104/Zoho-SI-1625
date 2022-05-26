@@ -56,7 +56,7 @@ public:
             return;
         }
 
-        else if (withdrawal >= 5000)
+        else if (withdrawal > 5000)
         {
             int a = cash.two_thousand;
             int b = cash.five_hundered;
