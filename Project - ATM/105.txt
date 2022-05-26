@@ -1,0 +1,25 @@
+1001		Withdrawal		Debit		6000		99400
+1002		Transfer to 104		Debit		1000		98400
+1001		Withdrawal		Debit		2000		96400
+1002		Withdrawal		Debit		4000		92400
+1001		Withdrawal		Debit		4000		88400
+1002		Withdrawal		Debit		4500		83900
+1001		Withdrawal		Debit		700		83200
+1002		Withdrawal		Debit		5000		78200
+1001		Withdrawal		Debit		5000		73200
+1002		Withdrawal		Debit		4500		68700
+1001		Withdrawal		Debit		4500		64200
+1001		Withdrawal		Debit		5000		59200
+1001		Withdrawal		Debit		4500		54700
+1002		Withdrawal		Debit		4000		50700
+1003		Withdrawal		Debit		1200		49500
+1001		Withdrawal		Debit		1200		48300
+1002		Withdrawal		Debit		1900		46400
+1001		Withdrawal		Debit		1900		44500
+1002		Withdrawal		Debit		2000		42500
+1001		Withdrawal		Debit		4000		38500
+1002		Withdrawal		Debit		4500		34000
+1003		Withdrawal		Debit		1900		32100
+1001		Withdrawal		Debit		1900		30200
+1001		Withdrawal		Debit		1900		28300
+1001		Withdrawal		Debit		1900		26400

@@ -1,0 +1,2 @@
+1002		Transfer from 105		Credit		1000		75800
+1001		Withdrawal		Debit		900		74900
