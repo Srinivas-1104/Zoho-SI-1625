@@ -1,1 +1,222 @@
+PS D:\Zoho Corporation\Project - ATM> g++ atm_operations.cpp
+PS D:\Zoho Corporation\Project - ATM> ./a
 
+ ATM OPERATIONS:
+
+ 0. Exit
+ 1. Load Cash into the ATM
+ 2. Show Customer Details
+ 3. ATM Process
+
+ Enter the choice: 2
+
+
+Customer Details
+Account Number           Account Holder                  Pin Number   Account Balance
+101             Suresh          2343            25234
+102             Ganesh          5432            15723
+103             Magesh          7854            22500
+104             Naresh          2345            71800
+105             Harish          1907            87400
+
+
+
+
+
+ ATM OPERATIONS:
+
+ 0. Exit
+ 1. Load Cash into the ATM
+ 2. Show Customer Details
+ 3. ATM Process
+
+ Enter the choice: 3
+
+
+
+ Enter the Account Number: 105
+
+ Enter the Pin Number: 1907
+
+
+
+ ATM PROCESS SIMULATION:
+
+ 0. Exit
+ 1. Check Balance
+ 2. Withdraw Money
+ 3. Transfer Money
+ 4. Check ATM Balance
+
+
+ Enter the choice: 1
+
+
+
+ The remaining balance is: 87400
+
+
+ ATM PROCESS SIMULATION:
+
+ 0. Exit
+ 1. Check Balance
+ 2. Withdraw Money
+ 3. Transfer Money
+ 4. Check ATM Balance
+
+
+ Enter the choice: 4
+
+
+ATM BALANCE:
+DENOMINATION     NUMBER          VALUES
+100             10              1000
+500             10              5000
+2000            10              20000
+Total:          26000
+
+
+ ATM PROCESS SIMULATION:
+
+ 0. Exit
+ 1. Check Balance
+ 2. Withdraw Money
+ 3. Transfer Money
+ 4. Check ATM Balance
+
+
+ Enter the choice: 2
+
+
+
+ Enter the pin number: 1907
+
+ The pin number has been verified!
+
+
+ Enter the amount to be withdrawn: 5500
+4000
+
+ The withdrawal has been made successfully:
+ 2000    X       2       -->    4000
+ 500     X       3       -->    1500
+ 100     X       0       -->    0
+
+
+
+
+ ATM PROCESS SIMULATION:
+
+ 0. Exit
+ 1. Check Balance
+ 2. Withdraw Money
+ 3. Transfer Money
+ 4. Check ATM Balance
+
+
+ Enter the choice: 3
+
+
+
+ Enter the target account number: 103
+
+ Enter the amount to be transferred: 700
+
+ The amount to be transferred is not within the limit.
+ The transaction is failed.
+ INCOMPLETED
+
+
+ ATM PROCESS SIMULATION:
+
+ 0. Exit
+ 1. Check Balance
+ 2. Withdraw Money
+ 3. Transfer Money
+ 4. Check ATM Balance
+
+
+ Enter the choice: 3
+
+
+
+ Enter the target account number: 103
+
+ Enter the amount to be transferred: 1200
+
+ The fund transfer is initiated.
+ The fund transfer is completed.
+ COMPLETED
+
+
+ ATM PROCESS SIMULATION:
+
+ 0. Exit
+ 1. Check Balance
+ 2. Withdraw Money
+ 3. Transfer Money
+ 4. Check ATM Balance
+
+
+ Enter the choice: 1
+
+
+
+ The remaining balance is: 80700
+
+
+ ATM PROCESS SIMULATION:
+
+ 0. Exit
+ 1. Check Balance
+ 2. Withdraw Money
+ 3. Transfer Money
+ 4. Check ATM Balance
+
+
+ Enter the choice: 0
+
+
+Exiting...
+
+
+
+
+ ATM OPERATIONS:
+
+ 0. Exit
+ 1. Load Cash into the ATM
+ 2. Show Customer Details
+ 3. ATM Process
+
+ Enter the choice: 2
+
+
+Customer Details
+Account Number           Account Holder                  Pin Number   Account Balance
+101             Suresh          2343            25234
+102             Ganesh          5432            15723
+103             Magesh          7854            23700
+104             Naresh          2345            71800
+105             Harish          1907            80700
+                                                
+
+
+
+
+
+ ATM OPERATIONS:
+
+ 0. Exit
+ 1. Load Cash into the ATM
+ 2. Show Customer Details
+ 3. ATM Process
+
+ Enter the choice: 0
+
+
+Exiting...
+
+
+
+PS D:\Zoho Corporation\Project - ATM>
