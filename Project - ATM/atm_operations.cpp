@@ -7,7 +7,6 @@ Customer_Details customers;
 class ATM_Operations
 {
 public:
-
     void withdraw_money(int id, string acc)
     {
         int withdrawal, money, count = 0;
@@ -62,10 +61,9 @@ public:
             int b = cash.five_hundered;
             int c = cash.hundered;
 
-
             if (a > 2)
             {
-                
+
                 for (int i = 1; i <= a; i++)
                 {
                     if (money > 2000)
@@ -73,10 +71,10 @@ public:
                         money -= 2000;
                         count += 2000;
                     }
-                    else    
+                    else
                         break;
                 }
-                
+
                 a = a - (count / 2000);
                 count = 0;
 
@@ -125,7 +123,7 @@ public:
                 if (money > 1000)
                 {
                     cout << "\n The denomination is availing maximum condition: \t 100";
-                    return; 
+                    return;
                 }
                 for (int i = 1; i <= c; i++)
                 {
@@ -136,8 +134,6 @@ public:
                     }
                     else
                         break;
-
-                    
                 }
 
                 c = c - (count / 100);
@@ -158,7 +154,7 @@ public:
             customers.print_data();
             customers.write_data_withdraw(id, withdrawal);
             cout << "\n The withdrawal has been made successfully: ";
-            cout << "\n 2000 \t X \t " << cash.two_thousand - a << "\t --> \t" << (2000 * (cash.two_thousand - a)); 
+            cout << "\n 2000 \t X \t " << cash.two_thousand - a << "\t --> \t" << (2000 * (cash.two_thousand - a));
             cout << "\n 500 \t X \t " << cash.five_hundered - b << "\t --> \t" << (500 * (cash.five_hundered - b));
             cout << "\n 100 \t X \t " << cash.hundered - c << "\t --> \t" << (100 * (cash.hundered - c));
             cout << endl << endl;
@@ -179,7 +175,7 @@ public:
                     money -= 2000;
                     a -= 1;
                 }
-                
+
                 if (a < 0)
                 {
                     cout << "\n The denomination is unavailable. \t" << 2000;
@@ -197,8 +193,8 @@ public:
                 for (int i = 1; i <= b; i++)
                 {
                     if (money == 1000)
-                       break;
-                    
+                        break;
+
                     if (money > 500 && (money >= 1500))
                     {
                         money -= 500;
@@ -213,7 +209,7 @@ public:
                 count = 0;
 
                 if (b < 0)
-                {    
+                {
                     cout << "\n The denomination is unavailable. \t" << 500;
                     return;
                 }
@@ -241,7 +237,7 @@ public:
                     else
                         break;
                 }
-                
+
                 c = c - (count / 100);
                 count = 0;
                 if (c < 0 || money > 0)
@@ -260,7 +256,7 @@ public:
             customers.print_data();
             customers.write_data_withdraw(id, withdrawal);
             cout << "\n The withdrawal has been made successfully: ";
-            cout << "\n 2000 \t X \t " << cash.two_thousand - a << "\t --> \t" << (2000 * (cash.two_thousand - a)); 
+            cout << "\n 2000 \t X \t " << cash.two_thousand - a << "\t --> \t" << (2000 * (cash.two_thousand - a));
             cout << "\n 500 \t X \t " << cash.five_hundered - b << "\t --> \t" << (500 * (cash.five_hundered - b));
             cout << "\n 100 \t X \t " << cash.hundered - c << "\t --> \t" << (100 * (cash.hundered - c));
 
@@ -309,10 +305,7 @@ public:
                     break;
 
                 case 3:
-                    if (customers.transfer_money(id) == true)
-                        cout << "\n COMPLETED";
-                    else
-                        cout << "\n INCOMPLETED";
+                    bool val = customers.transfer_money(id);
                     break;
 
                 case 4:
@@ -323,13 +316,11 @@ public:
                 default:
                     cout << "\n Invalid Choice";
                     break;
-                }
+            }
 
-            } while (choice);
-        }
-    };
-
-    
+        } while (choice);
+    }
+};
 
 int main()
 {
@@ -385,7 +376,7 @@ int main()
                         operations.menu(check, acc_no);
                     else
                         cout << "\n Invalid Match!";
-                    
+
                     cout << endl << endl;
                 }
                 break;
@@ -397,7 +388,6 @@ int main()
                 }
                 break;
         }
-
         cout << endl << endl;
     } while (choice);
 
