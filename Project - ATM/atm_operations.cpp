@@ -198,7 +198,6 @@ public:
                 {
                     if (money >= 1000 && b < 1)
                     {
-                        b = 0;
                         break;
                     }
                     if (money > 500 && (money > 1500 || money > 1000))
