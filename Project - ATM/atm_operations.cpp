@@ -156,7 +156,7 @@ public:
 
             customers.c[id].amount -= withdrawal;
             customers.print_data();
-
+            customers.write_data_withdraw(id, withdrawal);
             cout << "\n The withdrawal has been made successfully: ";
             cout << "\n 2000 \t X \t " << cash.two_thousand - a << "\t --> \t" << (2000 * (cash.two_thousand - a)); 
             cout << "\n 500 \t X \t " << cash.five_hundered - b << "\t --> \t" << (500 * (cash.five_hundered - b));
@@ -259,7 +259,7 @@ public:
 
             customers.c[id].amount -= withdrawal;
             customers.print_data();
-
+            customers.write_data_withdraw(id, withdrawal);
             cout << "\n The withdrawal has been made successfully: ";
             cout << "\n 2000 \t X \t " << cash.two_thousand - a << "\t --> \t" << (2000 * (cash.two_thousand - a)); 
             cout << "\n 500 \t X \t " << cash.five_hundered - b << "\t --> \t" << (500 * (cash.five_hundered - b));
