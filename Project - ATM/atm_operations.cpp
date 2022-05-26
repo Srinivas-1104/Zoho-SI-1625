@@ -76,7 +76,7 @@ public:
                     else    
                         break;
                 }
-                cout << count << endl;
+                
                 a = a - (count / 2000);
                 count = 0;
 
