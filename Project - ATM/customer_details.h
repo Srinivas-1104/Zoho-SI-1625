@@ -73,6 +73,7 @@ class Customer_Details
 
         void print_data ()
         {
+            c.resize(5);
             ofstream file;
             file.open("customer.txt");
 
@@ -96,8 +97,6 @@ class Customer_Details
             {
                 cout << c[i].account_number << "\t\t" << c[i].account_holder << "\t\t" << c[i].pin_number << "\t\t" << c[i].amount << endl;
             }
-
-            cout << "\n printed.";
 
         }
 
