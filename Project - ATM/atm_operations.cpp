@@ -266,7 +266,7 @@ public:
         do
         {
             cout << "\n\n\n ATM PROCESS SIMULATION: " << endl;
-            cout << "\n 0. Exit \n 1. Check Balance \n 2. Withdraw Money \n 3. Transfer Money \n 4. Check ATM Balance "<< endl << endl; 
+            cout << "\n 0. Exit \n 1. Check Balance \n 2. Withdraw Money \n 3. Transfer Money \n 4. Check ATM Balance \n 5. Mini Statement "<< endl << endl; 
             cout << "\n Enter the choice: ";
             cin >> choice;
             cout << endl << endl;
@@ -292,6 +292,10 @@ public:
                 case 4:
                     cash.read_cash();
                     cash.print_cash_screen();
+                    break;
+                
+                case 5:
+                    customers.mini_statement(id);
                     break;
 
                 default:
