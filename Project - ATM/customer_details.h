@@ -3,6 +3,7 @@
 #include <thread>
 #include <vector>
 #include <iterator>
+#include <algorithm>
 #include <fstream>
 
 using namespace std;
@@ -112,6 +113,33 @@ class Customer_Details
             file.open(value, ios::app);
             file << trans_no << "\t\t\t" << "Withdrawal" << "\t\t" << "Debit" << "\t\t" << amt << "\t\t" << c[id_01].amount << endl;
             trans_no += 1;
+        }
+
+        void mini_statement (int id)
+        {
+            string value = c[id].account_number + ".txt";
+            ifstream file(value);
+
+            file.unsetf(ios_base::skipws);
+            unsigned line_count = std::count(std::istream_iterator<char>(file), std::istream_iterator<char>(),  '\n');
+
+            file.clear();
+            file.seekg(0, ios::beg);
+
+            int start = (line_count < 10) ? 1 : line_count - 10 + 1;
+
+            for (int i = 1; i < start; i++)
+                getline (file, value);
+
+            cout << "\n TRANSACTION ID \t\t DESCRIPTION \t\t TYPE \t\t AMOUNT \t\t BALANCE" << endl;
+
+            for (int i = start; i <= line_count; i++)
+            {
+                getline (file, value);
+                cout << value << endl;
+            }
+
+            cout << endl;
         }
 
         int check_customer (string acc_no, string pin_no)
