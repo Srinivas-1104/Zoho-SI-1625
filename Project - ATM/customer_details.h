@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <thread>
 #include <vector>
 #include <iterator>
 #include <fstream>
@@ -28,6 +29,7 @@ class Customer_Details
 {
     public:
         vector<Customer> c;
+        int trans_no = 1001;
 
         bool is_empty(std::ifstream& pFile)
         {
@@ -93,12 +95,39 @@ class Customer_Details
 
             cout << "Customer Details" << endl;
             cout << "Account Number \t\t Account Holder \t\t Pin Number \t\t Account Balance" << endl;
-            for (int i = 0; i < c.size(); i++)
+            for (int i = 0; i < 5; i++)
             {
                 cout << c[i].account_number << "\t\t" << c[i].account_holder << "\t\t" << c[i].pin_number << "\t\t" << c[i].amount << endl;
             }
 
         }
+
+        void write_data_transfer(int id_01, int id_02, int amt)
+        {
+            string value;
+            value = c[id_01].account_number + ".txt";
+            fstream file_01, file_02;
+
+            file_01.open(value, ios::app);
+            file_01 << trans_no << "\t\t" << "Transfer to " << c[id_02].account_number << "\t\t" << "Debit" << "\t\t" << amt << "\t\t" << c[id_01].amount << endl;
+
+            value = c[id_02].account_number + ".txt";
+            file_02.open(value, ios::app);
+            file_02 << trans_no << "\t\t" << "Transfer from " << c[id_01].account_number << "\t\t" << "Credit" << "\t\t" << amt << "\t\t" << c[id_02].amount << endl;
+
+            trans_no += 1;
+        }
+
+        void write_data_withdraw (int id_01, int amt)
+        {
+            string value = c[id_01].account_number + ".txt";
+            fstream file;
+            file.open(value, ios::app);
+
+            file << trans_no << "\t\t" << "Withdrawal" << "\t\t" << "Debit" << "\t\t" << amt << "\t\t" << c[id_01].amount << endl;
+            trans_no += 1;
+        }
+
 
         // void add_customer ()
         // {
@@ -192,6 +221,7 @@ class Customer_Details
 
                     cout << "\n The fund transfer is completed.";                    
                     print_data();
+                    write_data_transfer(id_01, id_02, amt);
 
                     return true;
                 }
