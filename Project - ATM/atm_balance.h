@@ -116,6 +116,7 @@ public:
 
             file >> ch >> ch;
             total = stol(ch);
+            
         }
     }
 };
