@@ -3,75 +3,71 @@
 
 class Notepad
 {
-    User_Portal up;
-    Project_Portal pp;
-public:
-    void menu_user_portal()
-    {
-        int choice;
-        do
+    private:
+        User_Portal up;
+        Project_Portal pp;
+
+    public:
+        void menu_user_portal()
         {
-            up.clrscr();
-
-            cout << "\n WELCOME TO THE LOG-IN PORTAL: \n\n\n";
-            cout << "\n 0.  Exit \n\n 1. Sign In \n\n 2. Sign Up \n\n";
-            cout << "\n Enter the choice: ";
-            cin >> choice;
-
-            switch (choice)
+            int choice;
+            do
             {
-            case 0:
-                cout << "\n Exiting the system... \n Goodbye! " << endl;
-                cin.get();
                 up.clrscr();
-                exit(0);
-                break;
 
-            case 1:
-            {
-                string index = up.signing_in();
+                cout << "\n WELCOME TO THE LOG-IN PORTAL: \n\n\n";
+                cout << "\n 0.  Exit \n\n 1. Sign In \n\n 2. Sign Up \n\n";
+                cout << "\n Enter the choice: ";
+                cin >> choice;
 
-                if (index == "NOT FOUND")
+                switch (choice)
                 {
-                    cout << "\n The user does not exist." << endl;
-                    cin.get();
-                    up.signing_up();
-                }
+                    case 0:
+                    {
+                        cout << "\n Exiting the system... \n Goodbye! " << endl;
+                        cin.get();
+                        up.clrscr();
+                        exit(0);
+                        break;
+                    }
+                    case 1:
+                    {
+                        string index = up.signing_in();
 
-                else if (index == "PASSWORD INVALID")
-                {
-                    cout << "\n The password is invalid." << endl;
-                    cin.get();
-                    break;
-                }
+                        if (index == "NOT FOUND")
+                            cout << "\n The user does not exist." << endl;
+                        
+                        else if (index == "INVALID EMAIL")
+                            cout << "\n The e-mail is invalid." << endl;
 
-                else
-                {
-                    cout << "\n The user has been signed in successfully." << endl;
-                    cin.get();
-                    pp.main_screen(index);
-                }
+                        else if (index == "PASSWORD INVALID")
+                            cout << "\n The password is invalid." << endl;
 
-                break;
-            }
+                        else
+                        {
+                            cout << "\n The user has been signed in successfully." << endl;
+                            pp.main_screen(index);
+                        }
+                        
+                        cin.get();
+                        break;
+                    }
 
-            case 2:
-                up.signing_up();
-                break;
+                    case 2:
+                        up.signing_up();
+                        break;
 
-            default:
-                cout << "\n Invalid Choice!" << endl;
-                break;
-            }
-        } while (choice);
-    }
+                    default:
+                        cout << "\n Invalid Choice!" << endl;
+                        break;
+                    }
+            } while (choice);
+        }
 };
 
 int main()
 {
     Notepad note;
-
     note.menu_user_portal();
-
     return EXIT_SUCCESS;
 }
