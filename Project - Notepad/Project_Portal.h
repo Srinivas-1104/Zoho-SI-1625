@@ -16,9 +16,10 @@ private:
     vector<string> projects_available;
     int count;
 
-    notepad::PROJECT_LIST pl;
+    //notepad::PROJECT_LIST pl;
     notepad::PROJECT p;
-    notepad::VERSION_POINTER vp;
+    notepad::VERSION vers;
+    //notepad::VERSION_POINTER vp;
 
 public:
     void clrscr()
@@ -60,7 +61,7 @@ public:
 
                 case 2:
                 {
-                    file_operations(index);
+                    file_operations(index, &p);
                     cin.get();
                     break;
                 }
@@ -80,31 +81,31 @@ public:
             fs::create_directory(pathway);
     }
 
-    void read_project_details(notepad::PROJECT &p, string pathway, string fn)
-    {
-        size_t s = pathway.find_last_of('/') + 1;
-        pathway = pathway.substr(0, s);
-        pathway = pathway + "log_" + fn;
-        fstream inp(pathway, ios::in);
-        p.ParseFromIstream(&inp);
-        inp.close();
-    }
+    // void read_project_details(notepad::PROJECT &p, string pathway, string fn)
+    // {
+    //     size_t s = pathway.find_last_of('/') + 1;
+    //     pathway = pathway.substr(0, s);
+    //     pathway = pathway + "log_" + fn;
+    //     fstream inp(pathway, ios::in);
+    //     p.ParseFromIstream(&inp);
+    //     inp.close();
+    // }
 
-    void write_project_details(notepad::PROJECT &p, string pathway, string fn)
-    {
-        size_t s = pathway.find_last_of('/') + 1;
-        pathway = pathway.substr(0, s);
-        pathway = pathway + "log_" + fn;
-        fstream outp(pathway, ios::app);
-        outp << "\n\n\n";
-        p.SerializeToOstream(&outp);
-        outp.close();
-    }
+    // void write_project_details(notepad::PROJECT &p, string pathway, string fn)
+    // {
+    //     size_t s = pathway.find_last_of('/') + 1;
+    //     pathway = pathway.substr(0, s);
+    //     pathway = pathway + "log_" + fn;
+    //     fstream outp(pathway, ios::app);
+    //     outp << "\n\n\n";
+    //     p.SerializeToOstream(&outp);
+    //     outp.close();
+    // }
 
-    void add_gist_contents(notepad::GIST *g, string &l)
-    {
-        g->set_gist_line(l);
-    }
+    // void add_gist_contents(notepad::GIST *g, string &l)
+    // {
+    //     g->set_gist_line(l);
+    // }
 
     // void add_to_log(notepad::PROJECT *p, string pathway, string index, int count = 0)
     // {
@@ -136,6 +137,7 @@ public:
         }
 
         fstream file(pathway, ios::out);
+        //notepad::VERSION_POINTER vp;
 
         string pid = current_project + '_' + index + '_' + to_string(rand() % (100 - 1) + 1);
         p.set_project_id(pid);
@@ -143,14 +145,14 @@ public:
         p.set_user_id(index);
         p.set_project_name(current_project);
         p.set_operations(0);
-        vp.set_project_id(pid);
-        vp.set_id(index + '_' + current_project);
-        vp.set_version_no(1);
+        // vp.set_project_id(pid);
+        // vp.set_id(index + '_' + current_project);
+        // vp.set_version_no(1);
         fstream log(pathway + "log", ios::out | ios::binary);
         p.SerializeToOstream(&log);
-        vp.SerializeToOstream(&log);
+        //vp.SerializeToOstream(&log);
         log.close();
-        file_operations(index);
+        file_operations(index, &p);
     }
 
     void list_existing_projects(string index)
@@ -192,7 +194,7 @@ public:
     //     }
     // }
 
-    void file_operations(string index)
+    void file_operations(string index, notepad::PROJECT *p)
     {
         int choice;
         string line = "0";
@@ -223,8 +225,8 @@ public:
         cin.get();
         cin.get();
 
-        fstream log(pathway + "log", ios::in | ios::binary);
-        p.ParseFromIstream(&log);
+        // fstream log(pathway + "log", ios::in | ios::binary);
+        // p.ParseFromIstream(&log);
 
         clrscr();
 
@@ -233,7 +235,7 @@ public:
         cin.get();
 
         cout << "\n The chosen file: " << file_name;
-        read_project_details(live_project, pathway, file_name + "log");
+        //read_project_details(live_project, pathway, file_name + "log");
         cout << file_name << endl;
 
         switch (choice)
@@ -263,7 +265,8 @@ public:
                 break;
 
             case 5:
-                version_control(pathway, file_name, live_project);
+                version_control_using_protobuf(pathway, file_name);
+                // version_control(pathway, file_name, live_project);
                 // log_version_control(version.add_pointer(), count, pathway, "VERSION", line, pl);
                 break;
 
@@ -273,15 +276,18 @@ public:
         }
         cin.get();
 
-        if (live_project.operations() % 5 == 0)
-            versioning(pathway, file_name, p, live_project.operations());
+        p->set_operations (p->operations() + 1);
+        cout << p->operations () << '\t' << p->operations() % 5;
+        if (p->operations() % 5 == 0)
+            version_using_protobuf(pathway, file_name, p->operations());
+            //versioning(pathway, file_name, p, live_project.operations());
 
-        live_project.SerializeToOstream(&log);
+        //live_project.SerializeToOstream(&log);
         
         time_t current;
-        time(&current);
-        vp.set_time((ctime(&current)));
-        vp.SerializeToOstream(&log);
+        time (&current);
+        // vp.set_time((ctime(&current)));
+        // vp.SerializeToOstream(&log);
 
         // version.SerializePartialToOstream(&vers);
         // for (int i = 0; i < version.pointer_size(); i++)
@@ -290,7 +296,7 @@ public:
         //     cout << u.operation() << " " << u.job_done() << " " << u.project_id() << " " << u.user_id() << " ";
         // }
         // cout << count << endl;
-        write_project_details(live_project, pathway, file_name);
+        //write_project_details(live_project, pathway, file_name);
         cin.get();
     }
 
@@ -313,7 +319,7 @@ public:
                 cout << "\n The appending is completed.";
                 break;
             }
-            add_gist_contents(p.add_gist(), content);
+            //add_gist_contents(p.add_gist(), content);
             file << content << endl;
         }
         file.close();
@@ -425,7 +431,7 @@ public:
                     string message;
                     cout << "\n Enter the updated line: ";
                     getline(cin >> ws, message);
-                    add_gist_contents(p.add_gist(), message);
+                    //add_gist_contents(p.add_gist(), message);
                     fwrite << message << endl;
                     line++;
                     check = true;
@@ -433,7 +439,7 @@ public:
                 }
 
                 fwrite << content << endl;
-                add_gist_contents(p.add_gist(), content);
+                //add_gist_contents(p.add_gist(), content);
                 line++;
             }
         }
@@ -454,7 +460,7 @@ public:
                 if (line != line_number)
                 {
                     fwrite << content << endl;
-                    add_gist_contents(p.add_gist(), content);
+                    //add_gist_contents(p.add_gist(), content);
                 }
 
                 if (line == line_number)
@@ -496,76 +502,131 @@ public:
         file.close();
     }
 
-    void versioning(string pathway, string file_name, notepad::PROJECT &p, int count)
+    string read_content (string pathway)
+    {
+        string message = "", content;
+        fstream fread (pathway, ios::in);
+        while (getline(fread, content))
+            message += content + '\n';
+        fread.close();
+        return message;
+    }
+
+    void write_content (string pathway, string file, string msg)
+    {
+        fstream fread(pathway, ios::out);
+        fread << msg;
+        fread.close();
+    }
+
+    void add_to_log (notepad::VERSION_POINTER *vp, int count, string pathway)
     {
         time_t current;
         struct tm *local;
         time(&current);
         local = localtime(&current);
-        int min = local->tm_hour + local->tm_min;
-
-        string iam = to_string(min);
-        string input, output;
-        input = pathway;
-        size_t s = pathway.find_last_of('/') + 1;
-        output = pathway.substr(0, s) + "version_" + iam + '_' + file_name;
-
-        fstream fread(input, ios::in);
-        fstream fwrite(output, ios::out);
-        string content;
-        while (getline(fread, content))
-            fwrite << content << endl;
-
-        fread.close();
-        fwrite.close();
+        string sid = to_string(local->tm_hour) + '_' +  to_string(local->tm_min) + '_' + to_string(local->tm_sec);
+        vp->set_id(to_string(count));
+        vp->set_version_no((sid));
+        vp->set_time(ctime(&current));
+        vp->set_gist(read_content(pathway));
     }
 
-    void version_control(string pathway, string file_name, notepad::PROJECT &p)
+    void version_using_protobuf (string pathway, string file_name, int count)
     {
-        clrscr();
-        vector<string> versions_available;
+        //notepad::VERSION vers;
+        add_to_log(vers.add_version(), count, pathway);
+        fstream logger (pathway + '_' + "log", ios::app | ios::binary);
+        vers.SerializePartialToOstream(&logger);
+    }
+
+    void version_control_using_protobuf (string pathway, string file_name)
+    {
         int choice;
-
-        cout << "\n The Existing Versions are: \n\n\n";
-        size_t s = pathway.find_last_of('/') + 1;
-        pathway = pathway.substr(0, s);
-
-        for (const auto &entry : fs::directory_iterator(pathway))
+        cout << "\n INDEX \t VERSION_NO" << endl;
+        for (int i = 0; i < vers.version_size(); i++)
         {
-            string p = entry.path();
-            if (p.find("version") != string::npos && p.find(file_name))
-                versions_available.push_back(entry.path());
+            const notepad::VERSION_POINTER &vp = vers.version(i);
+            cout << i << '\t' << vp.version_no() << endl;
         }
 
-        if (versions_available.size() == 0)
-        {
-            cout << "\n No version files: ";
-            return;
-        }
-
-        if (versions_available.size() == 1)
-        {
-            cout << "\n Only one version of the file available.";
-            cout << "\n Reversion cannot happen";
-            return;
-        }
-
-        sort(versions_available.begin(), versions_available.end());
-
-        cout << "\nINDEX" << "\t" << "PROJECTS" << endl;
-        for (int i = 0; i < versions_available.size(); i++)
-            cout << i << '\t' << versions_available[i] << endl;
-
-        cout << "\n\n Enter the version index to revert and keep: (Be aware that choosing a version index now means that all other versions will be deleted.)" << endl;
+        cout << "\n Enter the choice: ";
         cin >> choice;
 
-        string name = versions_available[choice];
-        fs::remove(pathway + file_name);
-        fs::rename(name, pathway + file_name);
-
-        for (int i = choice; i < versions_available.size(); i++)
-            fs::remove(versions_available[i]);
-
-        versions_available.resize(choice);
+        string msg = vers.version(choice).gist();
+        write_content(pathway, file_name, msg);
     }
+
+    // void versioning(string pathway, string file_name, notepad::PROJECT &p, int count)
+    // {
+    //     time_t current;
+    //     struct tm *local;
+    //     time(&current);
+    //     local = localtime(&current);
+    //     int min = local->tm_hour + local->tm_min;
+
+    //     string iam = to_string(min);
+    //     string input, output;
+    //     input = pathway;
+    //     size_t s = pathway.find_last_of('/') + 1;
+    //     output = pathway.substr(0, s) + "version_" + iam + '_' + file_name;
+
+    //     fstream fread(input, ios::in);
+    //     fstream fwrite(output, ios::out);
+    //     string content;
+    //     while (getline(fread, content))
+    //         fwrite << content << endl;
+
+    //     fread.close();
+    //     fwrite.close();
+    // }
+
+    // void version_control(string pathway, string file_name, notepad::PROJECT &p)
+    // {
+    //     clrscr();
+    //     vector<string> versions_available;
+    //     int choice;
+
+    //     cout << "\n The Existing Versions are: \n\n\n";
+    //     size_t s = pathway.find_last_of('/') + 1;
+    //     pathway = pathway.substr(0, s);
+
+    //     for (const auto &entry : fs::directory_iterator(pathway))
+    //     {
+    //         string p = entry.path();
+    //         if (p.find("version") != string::npos && p.find(file_name))
+    //             versions_available.push_back(entry.path());
+    //     }
+
+    //     if (versions_available.size() == 0)
+    //     {
+    //         cout << "\n No version files: ";
+    //         return;
+    //     }
+
+    //     if (versions_available.size() == 1)
+    //     {
+    //         cout << "\n Only one version of the file available.";
+    //         cout << "\n Reversion cannot happen";
+    //         return;
+    //     }
+
+    //     sort(versions_available.begin(), versions_available.end());
+
+    //     cout << "\nINDEX" << "\t" << "PROJECTS" << endl;
+    //     for (int i = 0; i < versions_available.size(); i++)
+    //         cout << i << '\t' << versions_available[i] << endl;
+
+    //     cout << "\n\n Enter the version index to revert:" << endl;
+    //     cin >> choice;
+
+    //     string name = versions_available[choice];
+    //     fs::remove(pathway + file_name);
+    //     fs::rename(name, pathway + file_name);
+
+    //     // for (int i = choice; i < versions_available.size(); i++)
+    //     //     fs::remove(versions_available[i]);
+
+    //     //versions_available.resize(choice);
+    // }
 };
