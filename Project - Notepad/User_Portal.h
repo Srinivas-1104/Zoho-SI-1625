@@ -10,35 +10,6 @@ using namespace std;
 class User_Portal
 {
 public:
-    void menu()
-    {
-        int choice;
-
-        cout << "\n WELCOME TO THE LOG-IN PORTAL: \n\n\n";
-        cout << "\n 0.  Exit \n\n 1. Sign In \n\n 2. Sign Up \n\n";
-        cout << "\n Enter the choice: ";
-        cin >> choice;
-
-        switch (choice)
-        {
-        case 0:
-            cout << "\n Exiting the system... \n Goodbye! " << endl;
-            break;
-
-        case 1:
-            signing_in();
-            break;
-
-        case 2:
-            signing_up();
-            break;
-
-        default:
-            cout << "\n Invalid Choice!" << endl;
-            break;
-        }
-    }
-
     void clrscr()
     {
         cout << "\033[2J\033[1;1H";
@@ -54,7 +25,6 @@ public:
     {
         for (int i = 0; i < password.size(); i++)
             password[i] = (password[i] + 3) % 128;
-
         return password;
     }
 
@@ -87,7 +57,6 @@ public:
                         index = u.id();
                     else
                         index = "PASSWORD INVALID";
-
                     break;
                 }
             }
@@ -102,15 +71,15 @@ public:
         clrscr();
 
         cout << "\n WELCOME TO THE LOGGING - IN PORTAL: \n\n";
-
         cout << "\n Enter the E-Mail Address: ";
         getline(cin >> ws, un);
+        if (!check_email(un))
+            return "INVALID EMIAL";
 
         cout << "\n Enter the Password: ";
         getline(cin >> ws, pwd);
 
         pwd = encrpyt_password(pwd);
-
         return validation(un, pwd);
     }
 
@@ -121,7 +90,6 @@ public:
         cout << "\n Enter the Name of the User: ";
         getline(cin >> ws, name);
         u->set_name(name);
-
         cout << "\n Enter the ID of the User: ";
         getline(cin >> ws, value);
         u->set_id(value + '_' + name);
