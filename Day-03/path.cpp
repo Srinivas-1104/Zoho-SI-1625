@@ -186,7 +186,7 @@ class Matrix
             cout << "\n The Leader is: " << leader;
         }
 
-                void find_distance ()
+        void find_distance ()
         {
             //  The leader group is the indexes corresponding to the group of values to be performed.
             leader_group = make_unique<int[]> (row * column);
