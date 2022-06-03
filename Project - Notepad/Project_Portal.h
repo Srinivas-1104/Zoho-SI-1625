@@ -149,7 +149,7 @@ public:
         fstream log(pathway + "log", ios::out | ios::binary);
         p.SerializeToOstream(&log);
         vp.SerializeToOstream(&log);
-
+        log.close();
         file_operations(index);
     }
 
@@ -233,7 +233,7 @@ public:
         cin.get();
 
         cout << "\n The chosen file: " << file_name;
-        read_project_details(live_project, pathway, file_name);
+        read_project_details(live_project, pathway, file_name + "log");
         cout << file_name << endl;
 
         switch (choice)
@@ -274,10 +274,13 @@ public:
         cin.get();
 
         if (live_project.operations() % 5 == 0)
-            versioning(pathway, file_name, p, p.operations());
+            versioning(pathway, file_name, p, live_project.operations());
 
-        fstream log(pathway + "log", ios::out | ios::binary);
         live_project.SerializeToOstream(&log);
+        
+        time_t current;
+        time(&current);
+        vp.set_time((ctime(&current)));
         vp.SerializeToOstream(&log);
 
         // version.SerializePartialToOstream(&vers);
@@ -485,7 +488,10 @@ public:
         {
             string content;
             while (getline(file, content))
+            {    
                 cout << count << '\t' << content << endl;
+                count++;
+            }
         }
         file.close();
     }
@@ -557,7 +563,7 @@ public:
         fs::remove(pathway + file_name);
         fs::rename(name, pathway + file_name);
 
-        for (int i = choice + 1; versions_available.size(); i++)
+        for (int i = choice; i < versions_available.size(); i++)
             fs::remove(versions_available[i]);
 
         versions_available.resize(choice);
